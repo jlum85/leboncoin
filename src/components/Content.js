@@ -11,7 +11,13 @@ const Content = props => {
   return (
     <div className="content">
       {elements}
-      <NavPage pageMax={props.pageMax} numPage={props.numPage}></NavPage>
+      <NavPage
+        pageMax={props.pageMax}
+        numPage={props.numPage}
+        onChangePage={props.onChangePage}
+        onPageNext={props.onPageNext}
+        onPagePrev={props.onPagePrev}
+      ></NavPage>
     </div>
   );
 };

@@ -15,18 +15,36 @@ const Offers = () => {
 
   const fetchData = async () => {
     const response = await axios.get(
-      "https://leboncoin-api.herokuapp.com/api/offer/with-count?skip=0&limit=3"
+      "https://leboncoin-api.herokuapp.com/api/offer/with-count?skip=" +
+        (numPage - 1) * offersByPage +
+        "&limit=" +
+        offersByPage
     );
 
     setCount(response.data.count);
     setOffers(response.data.offers);
   };
 
+  const onPagePrev = () => {
+    if (numPage > 1) {
+      setNumPage(numPage - 1);
+    }
+  };
+  const onPageNext = () => {
+    if (numPage < count) {
+      setNumPage(numPage + 1);
+    }
+  };
   // A la création
   useEffect(() => {
     fetchData();
     // setIsLoading(false);
   }, []);
+
+  // A chaque changement de page
+  useEffect(() => {
+    fetchData();
+  }, [numPage]);
 
   return (
     <>
@@ -35,6 +53,9 @@ const Offers = () => {
         offers={offers}
         pageMax={Math.ceil(count / offersByPage)}
         numPage={numPage}
+        onChangePage={setNumPage}
+        onPageNext={onPageNext}
+        onPagePrev={onPagePrev}
       ></Content>
       <Footer />
     </>

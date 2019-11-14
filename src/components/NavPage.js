@@ -5,12 +5,14 @@ import "../App.css";
 import "./NavPage.css";
 
 const NavPage = props => {
-  console.log(props);
   const counter = Array(props.pageMax).fill(1);
   const currentPage = props.numPage;
   const elements = counter.map((item, index) => {
     return (
       <span
+        onClick={() => {
+          props.onChangePage(index + 1);
+        }}
         className={index + 1 === currentPage ? "numPage activePage" : "numPage"}
         key={index}
       >
@@ -23,12 +25,18 @@ const NavPage = props => {
     <div className="flexPage">
       <div className="navPage">
         <img
+          onClick={() => {
+            props.onPagePrev();
+          }}
           className={currentPage === 1 ? "disableArrow" : ""}
           src={ArrowBack}
           alt="Précédent"
         ></img>
         {elements}
         <img
+          onClick={() => {
+            props.onPageNext();
+          }}
           className={currentPage === props.pageMax ? "disableArrowa" : ""}
           src={ArrowForward}
           alt="Suivant"
