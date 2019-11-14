@@ -1,0 +1,56 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafafa;
+  padding: 10px;
+}
+
+.pdtCard {
+  display: flex;
+  width: 1000px;
+  height: 180px;
+  background-color: white;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: -1px 5px 15px 0 rgba(0, 0, 0, 0.75);
+}
+
+.pdt-Image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 240px;
+  height: 100%;
+  background-color: #cad1d9;
+  border-top-left-radius: 5px;
+}
+
+.offerImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 5px;
+}
+
+.pdtInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  font-family: "Roboto", sans-serif;
+}
+
+.pdt-title {
+  font-size: 22px;
+}
+
+.pdt-price {
+  font-size: 20px;
+  color: #f56b2a;
+}
+
+.pdt-created {
+  font-size: 16px;
+}

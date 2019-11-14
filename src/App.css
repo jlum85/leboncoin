@@ -3,6 +3,56 @@
   flex-direction: column;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexSearch {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  /* background-color: blue; */
+  padding-top: 50px;
+}
+
+.searchBox {
+  height: 130px;
+  width: 810px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: red; */
+}
+
+.searchInput {
+  width: 320;
+  height: 40px;
+}
+
+.searchBtn {
+  width: 220;
+  height: 40px;
+}
+
+/* --------- footer --------- */
+footer {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 footer * {
   padding: 0 5px;
+}
+
+footer a {
+  color: white;
 }

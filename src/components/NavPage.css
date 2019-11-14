@@ -1,0 +1,28 @@
+.flexPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.navPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+}
+
+.navPage span {
+  height: 30px;
+}
+
+.numPage {
+  height: 100%;
+  padding: 0 5px;
+}
+
+.activePage {
+  height: 100%;
+  padding: 0 5px;
+  background-color: #f56b2a;
+}

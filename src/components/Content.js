@@ -1,5 +1,7 @@
 import React from "react";
 import CardOffer from "./CardOffer";
+import NavPage from "./NavPage";
+import "./Content.css";
 
 const Content = props => {
   const elements = props.offers.map((item, index) => {
@@ -8,8 +10,8 @@ const Content = props => {
 
   return (
     <div className="content">
-      <h2>offers</h2>
       {elements}
+      <NavPage pageMax={props.pageMax} numPage={props.numPage}></NavPage>
     </div>
   );
 };
