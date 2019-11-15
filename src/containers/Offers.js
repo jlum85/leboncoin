@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Content from "../components/Content";
 import Search from "../components/Search";
-import Footer from "../components/Footer";
 import axios from "axios";
 import "../App.css";
 
@@ -48,7 +47,7 @@ const Offers = () => {
 
   return (
     <>
-      {/* <Search></Search> */}
+      <Search></Search>
       <Content
         offers={offers}
         pageMax={Math.ceil(count / offersByPage)}
@@ -57,7 +56,6 @@ const Offers = () => {
         onPageNext={onPageNext}
         onPagePrev={onPagePrev}
       ></Content>
-      <Footer />
     </>
   );
 };

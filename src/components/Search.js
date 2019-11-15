@@ -3,13 +3,13 @@ import React from "react";
 const Search = () => {
   return (
     <div className="flexSearch">
-      <div>
-        <form
-          className="searchBox"
-          onSubmit={() => {
-            console.log("chercher");
-          }}
-        >
+      <form
+        className="searchBox"
+        onSubmit={() => {
+          console.log("chercher");
+        }}
+      >
+        <div className="search">
           <input
             className="searchInput"
             placeholder="Que recherchez-vous ?"
@@ -18,10 +18,10 @@ const Search = () => {
             // value={email}
             //onChange={handleEmailChange}
           />
+        </div>
 
-          <input className="searchBtn" type="submit" value="Rechercher" />
-        </form>
-      </div>
+        <input className="searchBtn" type="submit" value="Rechercher" />
+      </form>
     </div>
   );
 };
