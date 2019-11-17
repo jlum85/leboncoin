@@ -1,0 +1,108 @@
+/* OFFER */
+aside {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  padding: 10px;
+}
+
+.offer {
+  background-color: #fafafa;
+}
+.offer > div {
+  display: flex;
+}
+.offer article {
+  flex: 1;
+  /* background-color: red; */
+}
+.offer article img {
+  height: 400px;
+  object-fit: contain;
+}
+
+.offer aside .buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.offer-content {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+.offer-detail {
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  margin-bottom: 30px;
+}
+
+.offer-infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  height: 150px;
+  font-size: 20px;
+}
+
+.offer-inf {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 200px;
+  font-size: 20px;
+}
+.offer-title {
+  font-weight: bold;
+}
+
+.offer-price {
+  color: #f56b2a;
+}
+
+.offer-description {
+  height: 150px;
+  font-size: 20px;
+}
+
+.userInfos {
+  margin-top: 10px;
+  height: 160px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.user-count {
+  color: #4183d7;
+}
+
+.user-detail {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border-bottom: 1px solid #e9ebeb;
+  margin-left: 30px;
+}
+
+.puchaseFlex {
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.puchaseBtn {
+  font-size: 19px;
+  background-color: #f56b2a;
+  color: white;
+  height: 44px;
+  width: 240px;
+  border-radius: 5px;
+}
