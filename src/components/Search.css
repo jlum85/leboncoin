@@ -1,0 +1,42 @@
+.search-box {
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formSearch {
+  display: flex;
+  text-align: center;
+}
+
+.formSearch div {
+  padding: 0 10px;
+}
+
+.flexInput {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  background-color: #f4f6f7;
+  padding: 0 10px;
+  width: 300px;
+}
+
+.searchInput {
+  color: #8191a0;
+  background-color: #f4f6f7;
+  height: 36px;
+  width: 260px;
+  padding: 0 10px;
+  border: 0;
+}
+
+.searchBtn {
+  color: white;
+  background-color: #4183d7;
+  height: 44px;
+  width: 220px;
+  padding: 0 10px;
+}

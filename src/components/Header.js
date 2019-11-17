@@ -1,4 +1,5 @@
 import React from "react";
+import "../App.css";
 import "./Header.css";
 import PublishBtn from "../images/Publish.png";
 import SearchBtn from "../images/Search.svg";
@@ -7,7 +8,7 @@ import ConnectBtn from "../images/Connect.svg";
 const Header = () => {
   return (
     <header>
-      <div className="wrapper">
+      {/* <div className="wrapper">
         <svg
           width="169"
           height="30"
@@ -25,7 +26,30 @@ const Header = () => {
         <img src={PublishBtn} alt="publish"></img>
         <img src={SearchBtn} alt="Search"></img>
         <img src={ConnectBtn} alt="Connection"></img>
-      </div>
+      </div> */}
+      <ul className="container menu">
+        <li>
+          <ul>
+            <li className="logo">leboncoin</li>
+            {/* <li className="publish">
+              <span className="searchPLus">+</span>
+              <span>Déposer une annonce</span>
+            </li> 
+            <li>Rechercher</li>
+            */}
+            <li>
+              <img src={PublishBtn} alt="publish"></img>
+            </li>
+            <li>
+              <img src={SearchBtn} alt="Search"></img>
+            </li>
+          </ul>
+        </li>
+        <li className="connect">
+          {/* <div>Se connecter</div> */}
+          <img src={ConnectBtn} alt="Connection"></img>
+        </li>
+      </ul>
     </header>
   );
 };

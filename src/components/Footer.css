@@ -1,0 +1,11 @@
+/* --------- footer --------- */
+footer {
+  background-color: #474747;
+  line-height: 80px;
+  text-align: center;
+}
+
+footer span,
+a {
+  color: white;
+}

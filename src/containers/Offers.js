@@ -11,6 +11,7 @@ const Offers = () => {
   const [count, setCount] = useState(0);
   const [offers, setOffers] = useState([]);
   const [numPage, setNumPage] = useState(1);
+  const [search, setSearch] = useState("");
 
   const fetchData = async () => {
     const response = await axios.get(
@@ -46,8 +47,13 @@ const Offers = () => {
   }, [numPage]);
 
   return (
-    <>
-      <Search></Search>
+    <section>
+      <Search
+        search={search}
+        onChange={e => {
+          setSearch(e.target.value);
+        }}
+      ></Search>
       <Content
         offers={offers}
         pageMax={Math.ceil(count / offersByPage)}
@@ -56,7 +62,7 @@ const Offers = () => {
         onPageNext={onPageNext}
         onPagePrev={onPagePrev}
       ></Content>
-    </>
+    </section>
   );
 };
 
