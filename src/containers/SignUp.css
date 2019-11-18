@@ -1,0 +1,80 @@
+.signUp {
+  height: 700px;
+  display: flex;
+  flex: 1;
+}
+
+.signLeft {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  height: 400x;
+  width: 500px;
+}
+
+.signRight {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  height: 400x;
+  width: 500px;
+  justify-content: flex-start;
+}
+
+.signBtn {
+  color: white;
+  border-radius: 5px;
+  background-color: #4183d7;
+  font-size: 20px;
+}
+
+.formPass {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.signInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.flexPass {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  width: 500px;
+}
+
+.passLeft {
+  width: 250px;
+}
+.passLeft p {
+  width: 250px;
+  font-size: 16px;
+}
+
+.inputSU {
+  width: 400px;
+  height: 35px;
+}
+
+.inputPass {
+  width: 200px;
+  height: 35px;
+}
+
+.flexBtn {
+  margin-top: 30px;
+}
+
+.signBtn {
+  height: 40px;
+  width: 400px;
+  /* padding: 20px; */
+}

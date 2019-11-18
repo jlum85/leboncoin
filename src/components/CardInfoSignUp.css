@@ -1,0 +1,30 @@
+.signInfos {
+  display: flex;
+  height: 110px;
+  width: 400px;
+  margin-top: 30px;
+}
+
+.signUpImg {
+  height: 80px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.signInfosDetail {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+.signInfosDetail p {
+  margin: 0;
+}
+.signInfoTitle {
+  font-weight: bold;
+}

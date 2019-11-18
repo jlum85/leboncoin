@@ -1,0 +1,22 @@
+.modal {
+  height: 100%;
+  width: 100%;
+  background: white;
+  border: 1px solid red;
+  /* position: absolute; */
+
+  /* position: fixed; */
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  display: flex;
+  /* opacity: ; */
+}
+
+.modalContent {
+  height: 700px;
+  width: 700px;
+  /* justify-content: center;
+  align-items: center; */
+  background-color: red;
+}

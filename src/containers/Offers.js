@@ -7,7 +7,7 @@ import "../App.css";
 const offersByPage = 3;
 
 const Offers = () => {
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [count, setCount] = useState(0);
   const [offers, setOffers] = useState([]);
   const [numPage, setNumPage] = useState(1);
@@ -23,6 +23,7 @@ const Offers = () => {
 
     setCount(response.data.count);
     setOffers(response.data.offers);
+    setIsLoading(false);
   };
 
   const onPagePrev = () => {
@@ -54,14 +55,18 @@ const Offers = () => {
           setSearch(e.target.value);
         }}
       ></Search>
-      <Content
-        offers={offers}
-        pageMax={Math.ceil(count / offersByPage)}
-        numPage={numPage}
-        onChangePage={setNumPage}
-        onPageNext={onPageNext}
-        onPagePrev={onPagePrev}
-      ></Content>
+      {isLoading ? (
+        <p> Chargement en cours</p>
+      ) : (
+        <Content
+          offers={offers}
+          pageMax={Math.ceil(count / offersByPage)}
+          numPage={numPage}
+          onChangePage={setNumPage}
+          onPageNext={onPageNext}
+          onPagePrev={onPagePrev}
+        ></Content>
+      )}
     </section>
   );
 };
