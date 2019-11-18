@@ -71,3 +71,12 @@
   width: 400px;
   height: 40px;
 }
+
+.modal-show-close {
+  color: #e4e8ec;
+  font-size: 40px;
+  font-weight: bold;
+  position: absolute;
+  top: -20px;
+  right: 40px;
+}

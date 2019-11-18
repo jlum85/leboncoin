@@ -10,11 +10,9 @@ const Modal = props => {
   const history = useHistory();
 
   const onAnswer = response => {
+    console.log("onAnswer");
+    console.log(response);
     const result = response.data;
-    // console.log("OnAnswer : ", result);
-    // console.log(result.account);
-    // console.log(result._id);
-
     if (result && result.token) {
       props.logIn({
         token: result.token,
@@ -59,6 +57,15 @@ const Modal = props => {
 
   return (
     <div className={props.showModal ? "modal-show" : "modal-hide"}>
+      <p
+        className="modal-show-close"
+        onClick={() => {
+          props.setShowModal(false);
+          history.push("/offers");
+        }}
+      >
+        X
+      </p>
       <div className="modal-content">
         <form
           className="formConnect"
@@ -74,30 +81,19 @@ const Modal = props => {
               className="inputSU"
               type="text"
               value={mail}
-              onChange={e => {
-                setMail(e.target.value);
-              }}
+              onChange={e => setMail(e.target.value)}
             />
             <p>Mot de passe</p>
             <input
               className="inputSU"
               type="password"
               value={password}
-              onChange={e => {
-                setPassword(e.target.value);
-              }}
+              onChange={e => setPassword(e.target.value)}
             />
           </div>
 
           <div className="flexBtn">
-            <button
-              className="signBtn"
-              onClick={() => {
-                console.log("se connecter");
-              }}
-            >
-              Se connecter{" "}
-            </button>
+            <button className="signBtn">Se connecter</button>
           </div>
           <div className="flexBtn">
             <h2>Vous n'avez pas de compte ?</h2>
