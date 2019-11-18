@@ -1,25 +1,27 @@
 import axios from "axios";
 import React, { useState } from "react";
-
+import { useHistory, Link } from "react-router-dom";
 import "../App.css";
 import "./Modal.css";
 
 const Modal = props => {
   const [mail, setMail] = useState("jlum@wanadoo.fr");
   const [password, setPassword] = useState("jel");
+  const history = useHistory();
 
   const onAnswer = response => {
     const result = response.data;
-    console.log("OnAnswer : ", result);
+    // console.log("OnAnswer : ", result);
+    // console.log(result.account);
+    // console.log(result._id);
 
-    if (response.data && response.data.token) {
+    if (result && result.token) {
       props.logIn({
-        token: response.data.token,
-        username: response.data.account.username,
-        _id: response.data._id
+        token: result.token,
+        username: result.account.username,
+        _id: result._id
       });
-
-      props.history.push("/");
+      history.push("/offers");
     }
     return result;
   };
@@ -56,15 +58,16 @@ const Modal = props => {
   };
 
   return (
-    <div className="modal">
-      <div className="modalContent">
+    <div className={props.showModal ? "modal-show" : "modal-hide"}>
+      <div className="modal-content">
         <form
-          className="formPass"
+          className="formConnect"
           onSubmit={event => {
             getLogin();
             event.preventDefault();
           }}
         >
+          <h2 className="connexion">Connexion</h2>
           <div className="signInput">
             <p>Adresse email</p>
             <input
@@ -90,7 +93,7 @@ const Modal = props => {
             <button
               className="signBtn"
               onClick={() => {
-                console.log("se conneter");
+                console.log("se connecter");
               }}
             >
               Se connecter{" "}
@@ -102,6 +105,8 @@ const Modal = props => {
               className="createAccountBtn"
               onClick={() => {
                 console.log("créer un compte");
+                props.setShowModal(false);
+                history.push("/sign_up");
               }}
             >
               Créer un compte

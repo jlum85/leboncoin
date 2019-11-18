@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -17,15 +17,11 @@ function App() {
     _id: Cookies.get("_id") || ""
   });
   const [showModal, setShowModal] = useState(false);
-  console.log("app.js : " + user);
-  console.log(user);
 
   const logIn = user => {
-    console.log("login ");
-    console.log(user);
-    setShowModal(true);
+    setShowModal(false);
     const newUser = { ...user };
-    Cookies.set("user", newUser.name);
+    Cookies.set("user", newUser.username);
     Cookies.set("token", newUser.token);
     Cookies.set("_id", newUser._id);
     setUser(newUser);
@@ -36,7 +32,7 @@ function App() {
     Cookies.remove("token");
     Cookies.remove("_id");
     setUser(null);
-    setShowModal(false); // temporaire pour test
+    setShowModal(false);
   };
 
   return (
@@ -45,10 +41,16 @@ function App() {
         user={user}
         logIn={logIn}
         logOut={logOut}
+        showModal={showModal}
         setShowModal={setShowModal}
       />
-
-      {showModal && <Modal logIn={logIn} />}
+      {showModal && (
+        <Modal
+          logIn={logIn}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+      )}
 
       <Switch>
         <Route path="/offer/:id">

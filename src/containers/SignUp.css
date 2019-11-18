@@ -1,5 +1,11 @@
+.containerSignUp {
+  height: 720px;
+  width: 1024px;
+  margin: 0 auto;
+}
+
 .signUp {
-  height: 700px;
+  height: 550px;
   display: flex;
   flex: 1;
 }
@@ -7,16 +13,13 @@
 .signLeft {
   display: flex;
   flex-direction: column;
-  padding: 10px 0;
-  height: 400x;
+  padding-left: 20px;
   width: 500px;
 }
 
 .signRight {
   display: flex;
   flex-direction: column;
-  padding: 10px 0;
-  height: 400x;
   width: 500px;
   justify-content: flex-start;
 }
@@ -76,5 +79,12 @@
 .signBtn {
   height: 40px;
   width: 400px;
-  /* padding: 20px; */
+}
+
+.inputCdg {
+  margin-top: 20px;
+}
+
+.flexBtn h2 {
+  text-align: center;
 }

@@ -7,14 +7,14 @@ import logIn from "../images/Connect.svg";
 import logOut from "../images/logOut.svg";
 
 const Header = props => {
-  console.log("Header : ", props);
-
   return (
     <header>
       <ul className="container menu">
         <li>
           <ul>
-            <li className="logo">leboncoin</li>
+            <li className="logo" onClick={() => props.setShowModal(false)}>
+              leboncoin
+            </li>
             <li>
               <img src={PublishBtn} alt="publish"></img>
             </li>
@@ -24,10 +24,11 @@ const Header = props => {
           </ul>
         </li>
         <>
-          {props.user ? (
+          {props.user && props.user.token ? (
             <li
               className="connect"
               onClick={() => {
+                console.log("disconnect");
                 props.logOut();
               }}
             >
@@ -37,7 +38,10 @@ const Header = props => {
             <li
               className="connect"
               onClick={() => {
-                props.setShowModal(false);
+                if (!props.showModal) {
+                  console.log("connect");
+                  props.setShowModal(true);
+                }
               }}
             >
               <img src={logIn} alt="Connection"></img>
