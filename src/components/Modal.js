@@ -12,8 +12,6 @@ const Modal = props => {
   const history = useHistory();
 
   const onAnswer = response => {
-    console.log("onAnswer");
-    console.log(response);
     const result = response.data;
     if (result && result.token) {
       props.logIn({
@@ -47,7 +45,6 @@ const Modal = props => {
   };
 
   const checkParams = () => {
-    let result = true;
     if (mail === "") {
       setMsgError("Mail non renseigné");
       setIsError(true);
@@ -56,6 +53,10 @@ const Modal = props => {
       setMsgError("Mot de passe non renseigné");
       setIsError(true);
       return false;
+    } else {
+      setMsgError();
+      setIsError(false);
+      return true;
     }
   };
 
@@ -120,12 +121,11 @@ const Modal = props => {
               {msgError}
             </p>
           </div>
-          <div className="flexBtn">
+          <div className="flexBtn2">
             <h2>Vous n'avez pas de compte ?</h2>
             <button
               className="createAccountBtn"
               onClick={() => {
-                console.log("créer un compte");
                 props.setIsModal(false);
                 history.push("/sign_up");
               }}

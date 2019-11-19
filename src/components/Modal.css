@@ -94,3 +94,12 @@
   right: 40px;
   cursor: pointer;
 }
+
+.flexBtn2 {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.flexBtn2 h2 {
+  text-align: center;
+}

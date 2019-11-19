@@ -29,6 +29,8 @@
   border-radius: 5px;
   background-color: #4183d7;
   font-size: 20px;
+  height: 40px;
+  width: 100%;
 }
 
 .formPass {
@@ -38,11 +40,17 @@
   align-items: flex-start;
 }
 
-.signInput {
+.formContainer {
+  width: 430px;
+}
+
+.signUpInput {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e4e8ec;
 }
 
 .flexPass {
@@ -54,11 +62,11 @@
   width: 500px;
 }
 
-.passLeft {
-  width: 250px;
+.passLeft,
+.passRight {
+  width: 220px;
 }
 .passLeft p {
-  width: 250px;
   font-size: 16px;
 }
 
@@ -68,17 +76,21 @@
 }
 
 .inputPass {
-  width: 200px;
+  width: 160px;
   height: 35px;
+}
+form input {
+  border-radius: 5px;
+  padding: 0 10px;
+}
+
+.passRight input {
+  width: 180px;
 }
 
 .flexBtn {
   margin-top: 30px;
-}
-
-.signBtn {
-  height: 40px;
-  width: 400px;
+  width: 100%;
 }
 
 .inputCdg {

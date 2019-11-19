@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import CardInfoSignUp from "../components/CardInfoSignUp";
 import Eye from "../images/eye.svg";
 import Notif from "../images/notification.svg";
@@ -8,15 +9,29 @@ import Schedule from "../images/schedule.svg";
 import "../App.css";
 import "./SignUp.css";
 
-const SignUp = () => {
+const SignUp = props => {
   const [pseudo, setPseudo] = useState("jlum");
   const [mail, setMail] = useState("jlum@wanadoo.fr");
   const [pass1, setPass1] = useState("jel");
   const [pass2, setPass2] = useState("jel");
+  const [cdg, setCdg] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [msgError, setMsgError] = useState("error");
+  const history = useHistory();
 
   const onAnswer = response => {
     const result = response.data;
-    console.log("OnAnswer : ", result);
+    if (result && result.token) {
+      props.logIn({
+        token: result.token,
+        username: result.account.username,
+        _id: result._id
+      });
+      history.push("/offers");
+    } else {
+      setMsgError("Bad Request");
+      setIsError(true);
+    }
     return result;
   };
 
@@ -33,25 +48,55 @@ const SignUp = () => {
     } else {
       console.log(error);
     }
+    setMsgError("Bad Request");
+    setIsError(true);
   };
 
-  const checkParams = () => {};
+  const checkParams = () => {
+    if (pseudo === "") {
+      setMsgError("Pseudo non renseigné");
+      setIsError(true);
+      return false;
+    } else if (mail === "") {
+      setMsgError("Mail non renseigné");
+      setIsError(true);
+      return false;
+    } else if (pass1 === "") {
+      setMsgError("Mot de passe non renseigné");
+      setIsError(true);
+      return false;
+    } else if (pass1 !== pass2) {
+      setMsgError("les mots de passe ne sont pas identiques!!");
+      setIsError(true);
+      return false;
+    } else if (!cdg) {
+      setMsgError("Vous devez accepter les conditions générales de vente");
+      setIsError(true);
+      return false;
+    } else {
+      setMsgError();
+      setIsError(false);
+      return true;
+    }
+  };
 
   const getToken = () => {
-    axios
-      .post(
-        "https://leboncoin-api.herokuapp.com/api/user/sign_up",
-        {
-          email: mail,
-          username: pseudo,
-          password: pass1
-        },
-        {
-          headers: { Accept: "application/json" }
-        }
-      )
-      .then(onAnswer)
-      .catch(onError);
+    if (checkParams()) {
+      axios
+        .post(
+          "https://leboncoin-api.herokuapp.com/api/user/sign_up",
+          {
+            email: mail,
+            username: pseudo,
+            password: pass1
+          },
+          {
+            headers: { Accept: "application/json" }
+          }
+        )
+        .then(onAnswer)
+        .catch(onError);
+    }
   };
 
   return (
@@ -86,67 +131,87 @@ const SignUp = () => {
                 event.preventDefault();
               }}
             >
-              <div className="signInput">
-                <p>Pseudo *</p>
-                <input
-                  className="inputSU"
-                  type="text"
-                  value={pseudo}
-                  onChange={e => {
-                    setPseudo(e.target.value);
-                  }}
-                />
-                <p>Adresse mail *</p>
-                <input
-                  className="inputSU"
-                  type="text"
-                  value={mail}
-                  onChange={e => {
-                    setMail(e.target.value);
-                  }}
-                />
+              <div className="formContainer">
+                <div className="signUpInput">
+                  <p>Pseudo *</p>
+                  <input
+                    className="inputSU"
+                    type="text"
+                    value={pseudo}
+                    required
+                    onChange={e => {
+                      setPseudo(e.target.value);
+                    }}
+                  />
+                  <p>Adresse mail *</p>
+                  <input
+                    className="inputSU"
+                    type="text"
+                    required
+                    value={mail}
+                    onChange={e => {
+                      setMail(e.target.value);
+                    }}
+                  />
 
-                <div className="flexPass">
-                  <div className="passLeft">
-                    <p>Mot de passe *</p>
-                    <input
-                      className="inputPass"
-                      type="password"
-                      value={pass1}
-                      onChange={e => {
-                        setPass1(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div className="passLeft">
-                    <p>Confirmer le mot de passe *</p>
-                    <input
-                      className="inputPass"
-                      type="password"
-                      value={pass2}
-                      onChange={e => {
-                        setPass2(e.target.value);
-                      }}
-                    />
+                  <div className="flexPass">
+                    <div className="passLeft">
+                      <p>Mot de passe *</p>
+                      <input
+                        className="inputPass"
+                        type="password"
+                        required
+                        value={pass1}
+                        onChange={e => {
+                          setPass1(e.target.value);
+                        }}
+                      />
+                    </div>
+                    <div className="passRight">
+                      <p>Confirmer le mot de passe *</p>
+                      <input
+                        className="inputPass"
+                        type="password"
+                        required
+                        value={pass2}
+                        onChange={e => {
+                          setPass2(e.target.value);
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="inputCdg">
-                <input type="checkbox" id="cdg" name="cdg"></input>
-                <label htmlFor="cdg">
-                  J’accepte les Conditions Générales de Vente et les Conditions
-                  Générales d’Utilisation.
-                </label>
-              </div>
+                <div className="inputCdg">
+                  <input
+                    type="checkbox"
+                    id="cdg"
+                    name="cdg"
+                    checked={cdg}
+                    onChange={e => {
+                      if (isError) {
+                        setIsError(false);
+                      }
+                      setCdg(e.target.checked);
+                    }}
+                  ></input>
+                  <label htmlFor="cdg">
+                    J’accepte les Conditions Générales de Vente et les
+                    Conditions Générales d’Utilisation.
+                  </label>
+                </div>
 
-              <div className="flexBtn">
-                <input
-                  type="submit"
-                  className="signBtn"
-                  value="Créer mon Compte Personnel"
-                ></input>
+                <div className="flexBtn">
+                  <input
+                    type="submit"
+                    className="signBtn"
+                    value="Créer mon Compte Personnel"
+                  ></input>
+                </div>
               </div>
+              <p className={"error " + (isError ? "error-show" : "error-hide")}>
+                {msgError}
+              </p>
             </form>
           </div>
         </div>
