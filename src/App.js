@@ -16,10 +16,10 @@ function App() {
     username: Cookies.get("username") || "",
     _id: Cookies.get("_id") || ""
   });
-  const [showModal, setShowModal] = useState(false);
+  const [isModal, setIsModal] = useState(false);
 
   const logIn = user => {
-    setShowModal(false);
+    setIsModal(false);
     const newUser = { ...user };
     Cookies.set("user", newUser.username);
     Cookies.set("token", newUser.token);
@@ -32,7 +32,7 @@ function App() {
     Cookies.remove("token");
     Cookies.remove("_id");
     setUser(null);
-    setShowModal(false);
+    setIsModal(false);
   };
 
   return (
@@ -41,17 +41,12 @@ function App() {
         user={user}
         logIn={logIn}
         logOut={logOut}
-        showModal={showModal}
-        setShowModal={setShowModal}
+        isModal={isModal}
+        setIsModal={setIsModal}
       />
-      {showModal && (
-        <Modal
-          logIn={logIn}
-          showModal={showModal}
-          setShowModal={setShowModal}
-        />
+      {isModal && (
+        <Modal logIn={logIn} isModal={isModal} setIsModal={setIsModal} />
       )}
-
       <Switch>
         <Route path="/offer/:id">
           <Offer user={user} />

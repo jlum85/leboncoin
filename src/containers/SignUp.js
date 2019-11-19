@@ -35,6 +35,8 @@ const SignUp = () => {
     }
   };
 
+  const checkParams = () => {};
+
   const getToken = () => {
     axios
       .post(
@@ -79,6 +81,7 @@ const SignUp = () => {
             <form
               className="formPass"
               onSubmit={event => {
+                console.log("submit signup");
                 getToken();
                 event.preventDefault();
               }}
@@ -138,7 +141,11 @@ const SignUp = () => {
               </div>
 
               <div className="flexBtn">
-                <button className="signBtn">Créer mon Compte Personnel</button>
+                <input
+                  type="submit"
+                  className="signBtn"
+                  value="Créer mon Compte Personnel"
+                ></input>
               </div>
             </form>
           </div>

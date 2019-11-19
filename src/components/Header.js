@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import "../App.css";
 import "./Header.css";
 import PublishBtn from "../images/Publish.png";
@@ -7,12 +8,19 @@ import logIn from "../images/Connect.svg";
 import logOut from "../images/logOut.svg";
 
 const Header = props => {
+  const history = useHistory();
   return (
     <header>
       <ul className="container menu">
         <li>
           <ul>
-            <li className="logo" onClick={() => props.setShowModal(false)}>
+            <li
+              className="logo"
+              onClick={() => {
+                props.setIsModal(false);
+                history.push("/offers");
+              }}
+            >
               leboncoin
             </li>
             <li>
@@ -38,9 +46,9 @@ const Header = props => {
             <li
               className="connect"
               onClick={() => {
-                if (!props.showModal) {
+                if (!props.isModal) {
                   console.log("connect");
-                  props.setShowModal(true);
+                  props.setIsModal(true);
                 }
               }}
             >

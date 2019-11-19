@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "../App.css";
 import "./Modal.css";
 
 const Modal = props => {
   const [mail, setMail] = useState("jlum@wanadoo.fr");
   const [password, setPassword] = useState("jel");
+  const [isError, setIsError] = useState(false);
+  const [msgError, setMsgError] = useState("error");
   const history = useHistory();
 
   const onAnswer = response => {
@@ -20,6 +22,9 @@ const Modal = props => {
         _id: result._id
       });
       history.push("/offers");
+    } else {
+      setMsgError("Utilisateur ou mot de passe incorrect");
+      setIsError(true);
     }
     return result;
   };
@@ -37,30 +42,47 @@ const Modal = props => {
     } else {
       console.log(error);
     }
+    setMsgError("Utilisateur ou mot de passe incorrect");
+    setIsError(true);
+  };
+
+  const checkParams = () => {
+    let result = true;
+    if (mail === "") {
+      setMsgError("Mail non renseigné");
+      setIsError(true);
+      return false;
+    } else if (password === "") {
+      setMsgError("Mot de passe non renseigné");
+      setIsError(true);
+      return false;
+    }
   };
 
   const getLogin = () => {
-    axios
-      .post(
-        "https://leboncoin-api.herokuapp.com/api/user/log_in",
-        {
-          email: mail,
-          password: password
-        },
-        {
-          headers: { Accept: "application/json" }
-        }
-      )
-      .then(onAnswer)
-      .catch(onError);
+    if (checkParams()) {
+      axios
+        .post(
+          "https://leboncoin-api.herokuapp.com/api/user/log_in",
+          {
+            email: mail,
+            password: password
+          },
+          {
+            headers: { Accept: "application/json" }
+          }
+        )
+        .then(onAnswer)
+        .catch(onError);
+    }
   };
 
   return (
-    <div className={props.showModal ? "modal-show" : "modal-hide"}>
+    <div className={props.isModal ? "modal-show" : "modal-hide"}>
       <p
-        className="modal-show-close"
+        className="modal-close"
         onClick={() => {
-          props.setShowModal(false);
+          props.setIsModal(false);
           history.push("/offers");
         }}
       >
@@ -79,7 +101,7 @@ const Modal = props => {
             <p>Adresse email</p>
             <input
               className="inputSU"
-              type="text"
+              type="email"
               value={mail}
               onChange={e => setMail(e.target.value)}
             />
@@ -94,6 +116,9 @@ const Modal = props => {
 
           <div className="flexBtn">
             <button className="signBtn">Se connecter</button>
+            <p className={"error " + (isError ? "error-show" : "error-hide")}>
+              {msgError}
+            </p>
           </div>
           <div className="flexBtn">
             <h2>Vous n'avez pas de compte ?</h2>
@@ -101,7 +126,7 @@ const Modal = props => {
               className="createAccountBtn"
               onClick={() => {
                 console.log("créer un compte");
-                props.setShowModal(false);
+                props.setIsModal(false);
                 history.push("/sign_up");
               }}
             >
