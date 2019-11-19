@@ -3,25 +3,20 @@ import "../App.css";
 import "./Search.css";
 
 const Search = props => {
-  // console.log("Search");
-  // console.log(props.paramApi);
-
   return (
     <div className="container pv-50">
-      <div className="search-box box-shadow br-5 pv-50">
+      <div className="search-box box-shadow br-5">
         <form
           className="formSearch"
           onSubmit={event => {
-            console.log("chercher");
             props.fetchData();
             event.preventDefault();
           }}
         >
-          <div className="custom-select">
+          <div className="box br-5">
             <select
               value={props.paramApi.sort}
               onChange={e => {
-                console.log("priceMin : " + e.target.value);
                 const newParam = { ...props.paramApi };
                 if (newParam.sort !== e.target.value) {
                   newParam.sort = e.target.value;
@@ -35,36 +30,38 @@ const Search = props => {
               <option value="date-desc">Annonces les plus récentes</option>
               <option value="date-asc">Annonces les plus anciennes</option>
             </select>
-          </div>
 
-          <label htmlFor="priceMin">Prix Min</label>
-          <input
-            className="priceMin"
-            type="number"
-            value={props.paramApi.priceMin}
-            onChange={e => {
-              console.log("priceMin : " + e.target.value);
-              const newParam = { ...props.paramApi };
-              if (newParam.priceMin !== e.target.value) {
-                newParam.priceMin = e.target.value;
-                props.setParamApi(newParam);
-              }
-            }}
-          />
-          <label htmlFor="priceMax">Prix Max</label>
-          <input
-            className="priceMax"
-            type="number"
-            value={props.paramApi.priceMax}
-            onChange={e => {
-              console.log("priceMax : " + e.target.value);
-              const newParam = { ...props.paramApi };
-              if (newParam.priceMax !== e.target.value) {
-                newParam.priceMax = e.target.value;
-                props.setParamApi(newParam);
-              }
-            }}
-          />
+            {/* <div className="boxR">
+              <label htmlFor="priceMin">Prix Min</label>
+              <input
+                className="price"
+                type="number"
+                value={props.paramApi.priceMin}
+                onChange={e => {
+                  const newParam = { ...props.paramApi };
+                  if (newParam.priceMin !== e.target.value) {
+                    newParam.priceMin = e.target.value;
+                    props.setParamApi(newParam);
+                  }
+                }}
+              />
+            </div> */}
+            {/* <div className="boxR">
+              <label htmlFor="priceMax">Prix Max</label>
+              <input
+                className="price"
+                type="number"
+                value={props.paramApi.priceMax}
+                onChange={e => {
+                  const newParam = { ...props.paramApi };
+                  if (newParam.priceMax !== e.target.value) {
+                    newParam.priceMax = e.target.value;
+                    props.setParamApi(newParam);
+                  }
+                }}
+              />
+            </div> */}
+          </div>
           <div className="flexInput">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +83,6 @@ const Search = props => {
               value={props.paramApi.title}
               placeholder="Que recherchez-vous ?"
               onChange={e => {
-                console.log("title : " + e.target.value);
                 const newParam = { ...props.paramApi };
                 if (newParam.title !== e.target.value) {
                   newParam.title = e.target.value;

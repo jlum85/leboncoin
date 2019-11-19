@@ -4,11 +4,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 .formSearch {
   display: flex;
-  text-align: center;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .formSearch div {
@@ -22,6 +25,7 @@
   background-color: #f4f6f7;
   padding: 0 10px;
   width: 300px;
+  height: 40px;
 }
 
 .searchInput {
@@ -36,7 +40,38 @@
 .searchBtn {
   color: white;
   background-color: #4183d7;
-  height: 44px;
+  height: 40px;
   width: 220px;
   padding: 0 10px;
+  font-size: 16px;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  /* background-color: #f4f6f7; */
+  height: 100px;
+}
+
+.boxR {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding-top: 10px;
+}
+
+select {
+  background-color: #0563af;
+  color: white;
+  padding: 5px 12px;
+  border: none;
+  font-size: 14px;
+  height: 40px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+.price input {
 }
