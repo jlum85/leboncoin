@@ -1,0 +1,37 @@
+/* .formPublish {
+  height: 500px;
+  width: 50%;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+} */
+
+.formPublish * {
+  padding: 20px 0;
+}
+
+.flex-Col-jstart {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* background-color: red; */
+}
+
+.flex-Col-jstar label {
+  text-align: left;
+}
+
+.publishBtn {
+  color: white;
+  background-color: #4183d7;
+  height: 40px;
+  width: 220px;
+  padding: 0 10px;
+  font-size: 16px;
+  border: none;
+}
+
+.h-650 {
+  height: 650px;
+}
