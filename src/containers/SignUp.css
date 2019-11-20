@@ -79,7 +79,7 @@
   width: 160px;
   height: 35px;
 }
-form input {
+.formSignUp input {
   border-radius: 5px;
   padding: 0 10px;
 }

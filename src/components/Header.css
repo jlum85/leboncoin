@@ -1,4 +1,8 @@
 /* HEADER */
+
+header {
+  width: 100vw;
+}
 .menu {
   display: flex;
   justify-content: space-between;
@@ -11,6 +15,11 @@
 }
 
 .menu ul li {
+  margin-right: 20px;
+  display: flex;
+}
+
+.menu ul img {
   margin-right: 20px;
   display: flex;
 }

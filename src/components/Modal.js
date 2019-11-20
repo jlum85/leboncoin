@@ -11,6 +11,11 @@ const Modal = props => {
   const [msgError, setMsgError] = useState("error");
   const history = useHistory();
 
+  const setError = msgError => {
+    setMsgError(msgError);
+    setIsError(true);
+  };
+
   const onAnswer = response => {
     const result = response.data;
     if (result && result.token) {
@@ -19,10 +24,8 @@ const Modal = props => {
         username: result.account.username,
         _id: result._id
       });
-      history.push("/offers");
     } else {
-      setMsgError("Utilisateur ou mot de passe incorrect");
-      setIsError(true);
+      setError("Utilisateur ou mot de passe incorrect");
     }
     return result;
   };
@@ -40,24 +43,21 @@ const Modal = props => {
     } else {
       console.log(error);
     }
-    setMsgError("Utilisateur ou mot de passe incorrect");
-    setIsError(true);
+    setError("Utilisateur ou mot de passe incorrect");
   };
 
   const checkParams = () => {
-    if (mail === "") {
-      setMsgError("Mail non renseigné");
-      setIsError(true);
-      return false;
-    } else if (password === "") {
-      setMsgError("Mot de passe non renseigné");
-      setIsError(true);
-      return false;
+    let result = false;
+    if (!mail) {
+      setError("Mail non renseigné");
+    } else if (!password) {
+      setError("Mot de passe non renseigné");
     } else {
       setMsgError();
       setIsError(false);
-      return true;
+      result = true;
     }
+    return result;
   };
 
   const getLogin = () => {
@@ -80,13 +80,7 @@ const Modal = props => {
 
   return (
     <div className={props.isModal ? "modal-show" : "modal-hide"}>
-      <p
-        className="modal-close"
-        onClick={() => {
-          props.setIsModal(false);
-          history.push("/offers");
-        }}
-      >
+      <p className="modal-close" onClick={() => props.setIsModal(false)}>
         X
       </p>
       <div className="modal-content">

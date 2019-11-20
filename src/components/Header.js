@@ -24,13 +24,12 @@ const Header = props => {
               leboncoin
             </li>
             <Link to={"publish"}>
-              <li>
-                <img src={PublishBtn} alt="publish"></img>
-              </li>
+              <img src={PublishBtn} alt="publish"></img>
             </Link>
-
             <li>
-              <img src={SearchBtn} alt="Search"></img>
+              <Link to={"offers"}>
+                <img src={SearchBtn} alt="Search"></img>
+              </Link>
             </li>
           </ul>
         </li>

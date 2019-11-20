@@ -9,7 +9,6 @@ import Offers from "./containers/Offers";
 import Offer from "./containers/Offer";
 import SignUp from "./containers/SignUp";
 import Publish from "./containers/Publish";
-import "./App.css";
 
 function App() {
   const [user, setUser] = useState({

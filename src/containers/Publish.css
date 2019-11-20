@@ -3,20 +3,13 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 10px;
-}
-
-.flex-Col-start label {
-  text-align: left;
-}
-
-.flex-Col-start input {
-  border-radius: 5px;
+  padding: 10px 0;
+  width: 100%;
 }
 
 textarea {
   height: 150px;
-  width: 450px;
+  width: calc(100% - 6px);
   resize: none;
   margin-top: 10px;
   font-size: 16px;
@@ -25,11 +18,21 @@ textarea {
   width: 100px;
   padding: 5px 0;
   font-size: 16px;
+  margin-top: 10px;
+  text-align: center;
 }
 
 .inputTitle {
-  padding: 5px 0;
+  padding: 5px;
   font-size: 16px;
+  margin-top: 10px;
+  width: calc(100% - 14px); /* border : 2 + padding: 5 */
+}
+
+.inputPhoto {
+  padding: 5px 0;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 .publishBtn {
@@ -41,14 +44,7 @@ textarea {
   width: 100%;
   margin-top: 30px;
   text-align: center;
-}
-
-.h-650 {
-  height: 650px;
-}
-
-.w-450 {
-  width: 450px;
+  border-radius: 5px;
 }
 
 .title {
@@ -57,12 +53,13 @@ textarea {
   text-align: center;
 }
 
-form label {
+.formPublish label {
   text-align: left;
   font-weight: bold;
 }
 
-form input {
-  text-align: left;
-  margin-top: 10px;
+.flexPublish {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }

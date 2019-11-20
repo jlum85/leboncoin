@@ -39,9 +39,9 @@ const img = {
 };
 
 const Publish = props => {
-  const [title, setTitle] = useState("Maillot Houston Rocket");
-  const [description, setDescription] = useState("Neuf");
-  const [price, setPrice] = useState(75);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
   const [file, setFile] = useState("");
   const [isError, setIsError] = useState(false);
   const [msgError, setMsgError] = useState("error");
@@ -79,74 +79,86 @@ const Publish = props => {
   );
   //  *********  pour le drag & drop ***********
 
+  const setError = msgErr => {
+    setMsgError(msgErr);
+    setIsError(true);
+  };
+
   const checkParams = () => {
-    if (!title) {
-      setMsgError("Titre non renseigné");
-      setIsError(true);
-      return false;
+    let result = false;
+    if (!token) {
+      setError("Vous devez vous connecter pour publier");
+    } else if (!title) {
+      setError("Titre non renseigné");
     } else if (!description) {
-      setMsgError("Texte non alimenté");
-      setIsError(true);
-      return false;
+      setError("Texte non alimenté");
+    } else if (!price || price <= 0) {
+      setError("Prix incorrect");
+    } else if (!file) {
+      setError("Vous devez ajouter une photo");
     } else {
       setMsgError();
       setIsError(false);
-      return true;
+      result = true;
     }
+    console.log(result, isError, msgError);
+    return result;
   };
 
   const publishData = async () => {
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("price", price);
-    formData.append("files", file);
+    if (checkParams()) {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("price", price);
+      formData.append("files", file);
 
-    try {
-      const response = await axios.post(
-        "https://leboncoin-api.herokuapp.com/api/offer/publish",
-        formData,
-        {
-          headers: {
-            Authorization: "Bearer " + token
+      try {
+        const response = await axios.post(
+          "https://leboncoin-api.herokuapp.com/api/offer/publish",
+          formData,
+          {
+            headers: {
+              Authorization: "Bearer " + token
+            }
           }
-        }
-      );
+        );
 
-      alert("Annonce publiée " + JSON.stringify(response.data));
-    } catch (err) {
-      if (err.response.status === 500) {
-        console.error("An error occurred");
-      } else {
-        console.error(err.response.data.msg);
+        alert("Annonce publiée " + JSON.stringify(response.data));
+      } catch (err) {
+        if (err.response.status === 500) {
+          console.error("An error occurred");
+        } else {
+          console.error(err.response.data.msg);
+        }
       }
     }
   };
 
   return (
-    <div className="container flex-Col w-500">
-      <div className="title w-450">
+    <section className="container-w400 flexPublish">
+      <div className="title">
         <h2>Déposer une annonce </h2>
       </div>
 
       <form
-        className="formPublish flex-Col-start h-650"
+        className="formPublish flex-Col-start"
         onSubmit={event => {
           console.log("formPublish");
           publishData();
           event.preventDefault();
         }}
       >
-        <label className="flex-Col-start w-450">
+        <label className="flex-Col-start">
           Titre de l'annonce *
           <input
-            className="inputTitle w-450"
+            className="inputTitle"
             type="text"
             value={title}
             onChange={event => setTitle(event.target.value)}
           />
         </label>
-        <label className="flex-Col-start w-450">
+        <label className="flex-Col-start">
           Texte de l'annonce *
           <textarea
             value={description}
@@ -165,6 +177,7 @@ const Publish = props => {
         <label className="flex-Col-start">
           Photo *
           <input
+            className="inputPhoto"
             type="file"
             onChange={event => setFile(event.target.files[0])}
           />
@@ -179,8 +192,11 @@ const Publish = props => {
         </section> */}
 
         <input className="publishBtn" type="submit" value="Valider" />
+        <p className={"error " + (isError ? "error-show" : "error-hide")}>
+          {msgError}
+        </p>
       </form>
-    </div>
+    </section>
   );
 };
 

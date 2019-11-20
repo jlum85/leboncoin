@@ -19,6 +19,11 @@ const SignUp = props => {
   const [msgError, setMsgError] = useState("error");
   const history = useHistory();
 
+  const setError = msgError => {
+    setMsgError(msgError);
+    setIsError(true);
+  };
+
   const onAnswer = response => {
     const result = response.data;
     if (result && result.token) {
@@ -29,8 +34,7 @@ const SignUp = props => {
       });
       history.push("/offers");
     } else {
-      setMsgError("Bad Request");
-      setIsError(true);
+      setError("Bad Request");
     }
     return result;
   };
@@ -48,13 +52,7 @@ const SignUp = props => {
     } else {
       console.log(error);
     }
-    setMsgError("Bad Request");
-    setIsError(true);
-  };
-
-  const setError = msgError => {
-    setMsgError(msgError);
-    setIsError(true);
+    setError("Bad Request");
   };
 
   const checkParams = () => {
@@ -72,6 +70,7 @@ const SignUp = props => {
     } else {
       setMsgError();
       setIsError(false);
+      result = true;
     }
     return result;
   };
