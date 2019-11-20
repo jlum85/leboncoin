@@ -12,13 +12,18 @@ const Content = props => {
   return (
     <div className="content container">
       {elements}
-      <NavPage
-        pageMax={props.pageMax}
-        numPage={props.numPage}
-        onChangePage={props.onChangePage}
-        onPageNext={props.onPageNext}
-        onPagePrev={props.onPagePrev}
-      ></NavPage>
+      {/* on affiche la barre de navigation que si on a plus d'une page  */}
+      {props.pageMax > 1 ? (
+        <NavPage
+          pageMax={props.pageMax}
+          numPage={props.numPage}
+          onChangePage={props.onChangePage}
+          onPageNext={props.onPageNext}
+          onPagePrev={props.onPagePrev}
+        ></NavPage>
+      ) : (
+        <> </>
+      )}
     </div>
   );
 };

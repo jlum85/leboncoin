@@ -53,6 +53,8 @@ li {
   justify-content: center;
 }
 
-section {
-  height: calc(100vh - 160px); /* header: 80 + footer : 80 */
-}
+/* header: 80 + footer : 80 */
+
+/* section {
+  height: calc(100vh - 160px);
+} */
