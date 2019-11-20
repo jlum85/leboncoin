@@ -52,32 +52,28 @@ const SignUp = props => {
     setIsError(true);
   };
 
+  const setError = msgError => {
+    setMsgError(msgError);
+    setIsError(true);
+  };
+
   const checkParams = () => {
-    if (pseudo === "") {
-      setMsgError("Pseudo non renseigné");
-      setIsError(true);
-      return false;
-    } else if (mail === "") {
-      setMsgError("Mail non renseigné");
-      setIsError(true);
-      return false;
-    } else if (pass1 === "") {
-      setMsgError("Mot de passe non renseigné");
-      setIsError(true);
-      return false;
+    let result = false;
+    if (!pseudo) {
+      setError("Pseudo non renseigné");
+    } else if (!mail) {
+      setError("Mail non renseigné");
+    } else if (!pass1) {
+      setError("Mot de passe non renseigné");
     } else if (pass1 !== pass2) {
-      setMsgError("les mots de passe ne sont pas identiques!!");
-      setIsError(true);
-      return false;
+      setError("les mots de passe ne sont pas identiques!!");
     } else if (!cdg) {
-      setMsgError("Vous devez accepter les conditions générales de vente");
-      setIsError(true);
-      return false;
+      setError("Vous devez accepter les conditions générales de vente");
     } else {
       setMsgError();
       setIsError(false);
-      return true;
     }
+    return result;
   };
 
   const getToken = () => {
@@ -124,7 +120,7 @@ const SignUp = props => {
           <div className="signRight">
             <h2>Créer un compte ? </h2>
             <form
-              className="formPass"
+              className="formSignUp"
               onSubmit={event => {
                 console.log("submit signup");
                 getToken();

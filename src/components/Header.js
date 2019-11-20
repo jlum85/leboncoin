@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "../App.css";
 import "./Header.css";
 import PublishBtn from "../images/Publish.png";
@@ -23,9 +23,12 @@ const Header = props => {
             >
               leboncoin
             </li>
-            <li>
-              <img src={PublishBtn} alt="publish"></img>
-            </li>
+            <Link to={"publish"}>
+              <li>
+                <img src={PublishBtn} alt="publish"></img>
+              </li>
+            </Link>
+
             <li>
               <img src={SearchBtn} alt="Search"></img>
             </li>

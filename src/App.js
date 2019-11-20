@@ -8,6 +8,7 @@ import Modal from "./components/Modal";
 import Offers from "./containers/Offers";
 import Offer from "./containers/Offer";
 import SignUp from "./containers/SignUp";
+import Publish from "./containers/Publish";
 import "./App.css";
 
 function App() {
@@ -57,6 +58,9 @@ function App() {
 
         <Route path="/sign_up">
           <SignUp logIn={logIn} />
+        </Route>
+        <Route path="/publish">
+          <Publish user={user} />
         </Route>
 
         <Route path="/">

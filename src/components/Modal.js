@@ -127,7 +127,7 @@ const Modal = props => {
               className="createAccountBtn"
               onClick={() => {
                 props.setIsModal(false);
-                history.push("/sign_up");
+                history.push("/sign_up"); // on peut aussi passer par <Link to="/sign-up"
               }}
             >
               Créer un compte
