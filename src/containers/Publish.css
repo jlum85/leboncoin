@@ -1,37 +1,68 @@
-/* .formPublish {
-  height: 500px;
-  width: 50%;
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-} */
-
-.formPublish * {
-  padding: 20px 0;
-}
-
-.flex-Col-jstart {
+.flex-Col-start {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
-  /* background-color: red; */
+  align-items: flex-start;
+  padding: 10px;
 }
 
-.flex-Col-jstar label {
+.flex-Col-start label {
   text-align: left;
+}
+
+.flex-Col-start input {
+  border-radius: 5px;
+}
+
+textarea {
+  height: 150px;
+  width: 450px;
+  resize: none;
+  margin-top: 10px;
+  font-size: 16px;
+}
+.inputPrice {
+  width: 100px;
+  padding: 5px 0;
+  font-size: 16px;
+}
+
+.inputTitle {
+  padding: 5px 0;
+  font-size: 16px;
 }
 
 .publishBtn {
   color: white;
   background-color: #4183d7;
   height: 40px;
-  width: 220px;
-  padding: 0 10px;
   font-size: 16px;
   border: none;
+  width: 100%;
+  margin-top: 30px;
+  text-align: center;
 }
 
 .h-650 {
   height: 650px;
+}
+
+.w-450 {
+  width: 450px;
+}
+
+.title {
+  font-weight: bold;
+  border-bottom: 3px solid #f56b2a;
+  text-align: center;
+}
+
+form label {
+  text-align: left;
+  font-weight: bold;
+}
+
+form input {
+  text-align: left;
+  margin-top: 10px;
 }
