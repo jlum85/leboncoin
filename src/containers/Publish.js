@@ -1,42 +1,43 @@
-import React, { useState, useEffect } from "react";
-import Dropzone from "react-dropzone";
-import { useDropzone } from "react-dropzone";
+import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import "../App.css";
 import "./Publish.css";
 
-const thumbsContainer = {
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
-  marginTop: 16
-};
+// import Dropzone from "react-dropzone";
+// import { useDropzone } from "react-dropzone";
 
-const thumb = {
-  display: "inline-flex",
-  borderRadius: 2,
-  border: "1px solid #eaeaea",
-  marginBottom: 8,
-  marginRight: 8,
-  width: 100,
-  height: 100,
-  padding: 4,
-  boxSizing: "border-box"
-};
+// const thumbsContainer = {
+//   display: "flex",
+//   flexDirection: "row",
+//   flexWrap: "wrap",
+//   marginTop: 16
+// };
 
-const thumbInner = {
-  display: "flex",
-  minWidth: 0,
-  overflow: "hidden"
-};
+// const thumb = {
+//   display: "inline-flex",
+//   borderRadius: 2,
+//   border: "1px solid #eaeaea",
+//   marginBottom: 8,
+//   marginRight: 8,
+//   width: 100,
+//   height: 100,
+//   padding: 4,
+//   boxSizing: "border-box"
+// };
 
-const img = {
-  display: "block",
-  width: "auto",
-  height: "100%",
-  objectFit: "contain"
-};
+// const thumbInner = {
+//   display: "flex",
+//   minWidth: 0,
+//   overflow: "hidden"
+// };
+
+// const img = {
+//   display: "block",
+//   width: "auto",
+//   height: "100%",
+//   objectFit: "contain"
+// };
 
 const Publish = props => {
   const [title, setTitle] = useState("");
@@ -48,35 +49,35 @@ const Publish = props => {
   const token = Cookies.get("token");
 
   //  *********  pour le drag & drop ***********
-  const [files, setFiles] = useState([]);
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: "image/*",
-    onDrop: acceptedFiles => {
-      setFiles(
-        acceptedFiles.map(file =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file)
-          })
-        )
-      );
-    }
-  });
+  // const [files, setFiles] = useState([]);
+  // const { getRootProps, getInputProps } = useDropzone({
+  //   accept: "image/*",
+  //   onDrop: acceptedFiles => {
+  //     setFiles(
+  //       acceptedFiles.map(file =>
+  //         Object.assign(file, {
+  //           preview: URL.createObjectURL(file)
+  //         })
+  //       )
+  //     );
+  //   }
+  // });
 
-  const thumbs = files.map(file => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img src={file.preview} style={img} />
-      </div>
-    </div>
-  ));
+  // const thumbs = files.map(file => (
+  //   <div style={thumb} key={file.name}>
+  //     <div style={thumbInner}>
+  //       <img src={file.preview} style={img} />
+  //     </div>
+  //   </div>
+  // ));
 
-  useEffect(
-    () => () => {
-      // Make sure to revoke the data uris to avoid memory leaks
-      files.forEach(file => URL.revokeObjectURL(file.preview));
-    },
-    [files]
-  );
+  // useEffect(
+  //   () => () => {
+  //     // Make sure to revoke the data uris to avoid memory leaks
+  //     files.forEach(file => URL.revokeObjectURL(file.preview));
+  //   },
+  //   [files]
+  // );
   //  *********  pour le drag & drop ***********
 
   const setError = msgErr => {

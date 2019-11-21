@@ -4,7 +4,7 @@ import Search from "../components/Search";
 import axios from "axios";
 import "../App.css";
 
-const offersByPage = 3;
+const offersByPage = 5;
 const API = "https://leboncoin-api.herokuapp.com/api/offer/with-count";
 const tabSort = ["price-desc", "price-asc", "date-desc", "date-asc"];
 
@@ -14,7 +14,7 @@ const Offers = () => {
   const [offers, setOffers] = useState([]);
   const [numPage, setNumPage] = useState(1);
   const [paramApi, setParamApi] = useState({
-    title: "cd",
+    title: "",
     priceMin: 0,
     priceMax: 0,
     sort: "price-asc",

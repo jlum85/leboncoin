@@ -55,6 +55,6 @@ li {
 
 /* header: 80 + footer : 80 */
 
-/* section {
-  height: calc(100vh - 160px);
-} */
+section {
+  min-height: calc(100vh - 160px);
+}

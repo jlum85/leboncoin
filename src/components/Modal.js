@@ -19,6 +19,7 @@ const Modal = props => {
   const onAnswer = response => {
     const result = response.data;
     if (result && result.token) {
+      console.log(result);
       props.logIn({
         token: result.token,
         username: result.account.username,
@@ -33,8 +34,6 @@ const Modal = props => {
   const onError = error => {
     const result = error.response;
     if (result) {
-      console.log(result.status);
-      console.log(result.statusText);
       if (result.data) {
         console.log(result.data);
       } else {
@@ -62,17 +61,24 @@ const Modal = props => {
 
   const getLogin = () => {
     if (checkParams()) {
+      const data = new FormData();
+      data.append("email", mail);
+      data.append("password", password);
+
       axios
-        .post(
-          "https://leboncoin-api.herokuapp.com/api/user/log_in",
-          {
-            email: mail,
-            password: password
-          },
-          {
-            headers: { Accept: "application/json" }
-          }
-        )
+        // .post(
+        //   "https://leboncoin-api.herokuapp.com/api/user/log_in",
+        //   {
+        //     email: mail,
+        //     password: password
+        //   },
+        //   {
+        //     headers: { Accept: "application/json" }
+        //   }
+        // )
+        .post("http://localhost:4000/user/sign_in", data, {
+          headers: { Accept: "application/json" }
+        })
         .then(onAnswer)
         .catch(onError);
     }

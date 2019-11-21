@@ -41,18 +41,19 @@ const SignUp = props => {
 
   const onError = error => {
     const result = error.response;
+    let msg = "Bad Request";
     if (result) {
-      console.log(result.status);
-      console.log(result.statusText);
       if (result.data) {
-        console.log(result.data);
+        if (result.data.userMsg) {
+          msg = result.data.userMsg;
+        }
       } else {
         console.log(result);
       }
     } else {
       console.log(error);
     }
-    setError("Bad Request");
+    setError(msg);
   };
 
   const checkParams = () => {
@@ -75,20 +76,17 @@ const SignUp = props => {
     return result;
   };
 
-  const getToken = () => {
+  const getToken = async () => {
     if (checkParams()) {
+      const formData = new FormData();
+      formData.append("email", mail);
+      formData.append("username", pseudo);
+      formData.append("password", pass1);
+
       axios
-        .post(
-          "https://leboncoin-api.herokuapp.com/api/user/sign_up",
-          {
-            email: mail,
-            username: pseudo,
-            password: pass1
-          },
-          {
-            headers: { Accept: "application/json" }
-          }
-        )
+        .post("http://localhost:4000/user/sign_up", formData, {
+          "Content-Type": "multipart/form-data"
+        })
         .then(onAnswer)
         .catch(onError);
     }
