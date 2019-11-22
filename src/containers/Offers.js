@@ -5,7 +5,8 @@ import axios from "axios";
 import "../App.css";
 
 const offersByPage = 5;
-const API = "https://leboncoin-api.herokuapp.com/api/offer/with-count";
+// const API = "https://leboncoin-api.herokuapp.com/api/offer/with-count";
+const API = "http://localhost:4000/offer/with-count";
 const tabSort = ["price-desc", "price-asc", "date-desc", "date-asc"];
 
 const Offers = () => {
@@ -21,13 +22,6 @@ const Offers = () => {
     skip: (numPage - 1) * offersByPage,
     limit: offersByPage
   });
-
-  // console.log("Offers : ");
-  // console.log(isLoading);
-  // console.log(count);
-  // console.log(offers);
-  // console.log(numPage);
-  // console.log(paramApi);
 
   const getUrl = () => {
     let firstParam = true;
@@ -59,7 +53,6 @@ const Offers = () => {
     if (paramApi.limit > 0) {
       url += getSeparator() + "limit=" + paramApi.limit;
     }
-    // console.log(url);
     return url;
   };
 
@@ -70,14 +63,21 @@ const Offers = () => {
     setIsLoading(false);
   };
 
+  const updatePage = num => {
+    setNumPage(num);
+    const newParam = { ...paramApi };
+    newParam.skip = (num - 1) * offersByPage;
+    setParamApi(newParam);
+  };
+
   const onPagePrev = () => {
     if (numPage > 1) {
-      setNumPage(numPage - 1);
+      updatePage(numPage - 1);
     }
   };
   const onPageNext = () => {
     if (numPage < count) {
-      setNumPage(numPage + 1);
+      updatePage(numPage + 1);
     }
   };
   // A la création
@@ -88,7 +88,6 @@ const Offers = () => {
 
   // A chaque changement de page
   useEffect(() => {
-    // console.log("fetch page");
     fetchData();
   }, [numPage]);
 
@@ -106,7 +105,7 @@ const Offers = () => {
           offers={offers}
           pageMax={Math.ceil(count / offersByPage)}
           numPage={numPage}
-          onChangePage={setNumPage}
+          onChangePage={updatePage}
           onPageNext={onPageNext}
           onPagePrev={onPagePrev}
         ></Content>

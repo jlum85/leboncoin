@@ -98,11 +98,11 @@ const Publish = props => {
     } else if (!file) {
       setError("Vous devez ajouter une photo");
     } else {
-      setMsgError();
+      setMsgError("");
       setIsError(false);
       result = true;
     }
-    console.log(result, isError, msgError);
+    // console.log(result, isError, msgError);
     return result;
   };
 
@@ -116,7 +116,8 @@ const Publish = props => {
 
       try {
         const response = await axios.post(
-          "https://leboncoin-api.herokuapp.com/api/offer/publish",
+          // "https://leboncoin-api.herokuapp.com/api/offer/publish",
+          "http://localhost:4000/offer/publish",
           formData,
           {
             headers: {
@@ -127,11 +128,12 @@ const Publish = props => {
 
         alert("Annonce publiée " + JSON.stringify(response.data));
       } catch (err) {
-        if (err.response.status === 500) {
-          console.error("An error occurred");
-        } else {
-          console.error(err.response.data.msg);
-        }
+        console.log(err);
+        // if (err.response.status === 500) {
+        //   console.error("An error occurred");
+        // } else {
+        //   console.error(err.response.data.msg);
+        // }
       }
     }
   };
@@ -145,7 +147,7 @@ const Publish = props => {
       <form
         className="formPublish flex-Col-start"
         onSubmit={event => {
-          console.log("formPublish");
+          // console.log("formPublish");
           publishData();
           event.preventDefault();
         }}
@@ -180,7 +182,11 @@ const Publish = props => {
           <input
             className="inputPhoto"
             type="file"
-            onChange={event => setFile(event.target.files[0])}
+            multiple
+            onChange={event => {
+              // console.log(event.target.files);
+              setFile(event.target.files[0]);
+            }}
           />
         </label>
 

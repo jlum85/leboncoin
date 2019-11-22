@@ -19,7 +19,7 @@ const Modal = props => {
   const onAnswer = response => {
     const result = response.data;
     if (result && result.token) {
-      console.log(result);
+      // console.log(result);
       props.logIn({
         token: result.token,
         username: result.account.username,
@@ -66,16 +66,6 @@ const Modal = props => {
       data.append("password", password);
 
       axios
-        // .post(
-        //   "https://leboncoin-api.herokuapp.com/api/user/log_in",
-        //   {
-        //     email: mail,
-        //     password: password
-        //   },
-        //   {
-        //     headers: { Accept: "application/json" }
-        //   }
-        // )
         .post("http://localhost:4000/user/sign_in", data, {
           headers: { Accept: "application/json" }
         })

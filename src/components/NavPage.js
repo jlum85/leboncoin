@@ -7,10 +7,11 @@ import "./NavPage.css";
 const NavPage = props => {
   const counter = Array(props.pageMax).fill(1);
   const currentPage = props.numPage;
+
   const elements = counter.map((item, index) => {
     return (
       <span
-        onClick={() => {
+        onClick={e => {
           props.onChangePage(index + 1);
         }}
         className={index + 1 === currentPage ? "numPage activePage" : "numPage"}

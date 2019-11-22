@@ -5,18 +5,12 @@ import "./Offer.css";
 import axios from "axios";
 
 const Offer = () => {
-  // const obj = useParams();
-  // const id =obj.id;
   const { id } = useParams();
   const [offer, setOffer] = useState({});
   const [isLoading, setIsLoading] = useState({});
 
-  // console.log(offer);
-
   const fetchData = async () => {
-    const response = await axios.get(
-      "https://leboncoin-api.herokuapp.com/api/offer/" + id
-    );
+    const response = await axios.get("http://localhost:4000/offer/" + id);
     setOffer({ ...response.data });
     setIsLoading(false);
   };
@@ -54,7 +48,7 @@ const Offer = () => {
                   <div className="offer-infos">
                     <div className="offer-inf">
                       <div className="offer-title">{offer.title}</div>
-                      <div className="offer-price">{offer.price}</div>
+                      <div className="offer-price">{offer.price} €</div>
                     </div>
                     <div className="offer-created">{getFormattedDate()}</div>
                   </div>

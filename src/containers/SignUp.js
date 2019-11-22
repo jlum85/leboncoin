@@ -196,7 +196,7 @@ const SignUp = props => {
 
                 <div className="flexBtn">
                   <input
-                    type="submit"
+                    type="button"
                     className="signBtn"
                     value="Créer mon Compte Personnel"
                   ></input>

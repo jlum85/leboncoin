@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const CardOffer = props => {
   const item = props.offer;
   let offerImg = "";
-  if (item.pictures.length > 0) {
+  if (item.pictures && item.pictures.length >= 0) {
     offerImg = item.pictures[0];
   }
   return (
