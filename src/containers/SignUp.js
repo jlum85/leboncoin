@@ -9,6 +9,9 @@ import Schedule from "../images/schedule.svg";
 import "../App.css";
 import "./SignUp.css";
 
+// back local : "http://localhost:4000/user/sign_up"
+const API_BACK = "https://jl-back-leboncoin.herokuapp.com/user/sign_up";
+
 const SignUp = props => {
   const [pseudo, setPseudo] = useState("jlum");
   const [mail, setMail] = useState("jlum@wanadoo.fr");
@@ -84,9 +87,7 @@ const SignUp = props => {
       formData.append("password", pass1);
 
       axios
-        .post("http://localhost:4000/user/sign_up", formData, {
-          "Content-Type": "multipart/form-data"
-        })
+        .post(API_BACK, formData, { "Content-Type": "multipart/form-data" })
         .then(onAnswer)
         .catch(onError);
     }
@@ -196,7 +197,7 @@ const SignUp = props => {
 
                 <div className="flexBtn">
                   <input
-                    type="button"
+                    type="submit"
                     className="signBtn"
                     value="Créer mon Compte Personnel"
                   ></input>

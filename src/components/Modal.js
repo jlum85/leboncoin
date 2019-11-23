@@ -4,6 +4,9 @@ import { useHistory } from "react-router-dom";
 import "../App.css";
 import "./Modal.css";
 
+// back local : "http://localhost:4000/user/sign_in"
+const API_BACK = "https://jl-back-leboncoin.herokuapp.com/user/sign_in";
+
 const Modal = props => {
   const [mail, setMail] = useState("jlum@wanadoo.fr");
   const [password, setPassword] = useState("jel");
@@ -66,9 +69,7 @@ const Modal = props => {
       data.append("password", password);
 
       axios
-        .post("http://localhost:4000/user/sign_in", data, {
-          headers: { Accept: "application/json" }
-        })
+        .post(API_BACK, data, { headers: { Accept: "application/json" } })
         .then(onAnswer)
         .catch(onError);
     }
@@ -83,8 +84,8 @@ const Modal = props => {
         <form
           className="formConnect"
           onSubmit={event => {
-            getLogin();
             event.preventDefault();
+            getLogin();
           }}
         >
           <h2 className="connexion">Connexion</h2>

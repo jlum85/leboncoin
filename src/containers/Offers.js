@@ -5,8 +5,8 @@ import axios from "axios";
 import "../App.css";
 
 const offersByPage = 5;
-// const API = "https://leboncoin-api.herokuapp.com/api/offer/with-count";
-const API = "http://localhost:4000/offer/with-count";
+// const API = "http://localhost:4000/offer/with-count";
+const API = "https://jl-back-leboncoin.herokuapp.com/offer/with-count";
 const tabSort = ["price-desc", "price-asc", "date-desc", "date-asc"];
 
 const Offers = () => {

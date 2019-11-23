@@ -39,6 +39,9 @@ import "./Publish.css";
 //   objectFit: "contain"
 // };
 
+// back local : "http://localhost:4000/offer/publish"
+const API_BACK = "https://jl-back-leboncoin.herokuapp.com/offer/publish";
+
 const Publish = props => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -115,25 +118,19 @@ const Publish = props => {
       formData.append("files", file);
 
       try {
-        const response = await axios.post(
-          // "https://leboncoin-api.herokuapp.com/api/offer/publish",
-          "http://localhost:4000/offer/publish",
-          formData,
-          {
-            headers: {
-              Authorization: "Bearer " + token
-            }
-          }
-        );
+        const response = await axios.post(API_BACK, formData, {
+          headers: { Authorization: "Bearer " + token }
+        });
 
         alert("Annonce publiée " + JSON.stringify(response.data));
       } catch (err) {
-        console.log(err);
-        // if (err.response.status === 500) {
-        //   console.error("An error occurred");
-        // } else {
-        //   console.error(err.response.data.msg);
-        // }
+        if (err.response && err.response.status === 500) {
+          console.error("An error occurred");
+        } else {
+          console.error(err);
+        }
+        setMsgError("An error occurred");
+        setIsError(true);
       }
     }
   };

@@ -4,13 +4,16 @@ import "../App.css";
 import "./Offer.css";
 import axios from "axios";
 
+// back local : "http://localhost:4000/offer/"
+const API_BACK = "https://jl-back-leboncoin.herokuapp.com/offer/";
+
 const Offer = () => {
   const { id } = useParams();
   const [offer, setOffer] = useState({});
   const [isLoading, setIsLoading] = useState({});
 
   const fetchData = async () => {
-    const response = await axios.get("http://localhost:4000/offer/" + id);
+    const response = await axios.get(API_BACK + id);
     setOffer({ ...response.data });
     setIsLoading(false);
   };
