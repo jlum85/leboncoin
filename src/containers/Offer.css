@@ -81,6 +81,9 @@ aside {
   color: #4183d7;
 }
 
+h2 {
+  text-align: center;
+}
 .user-detail {
   height: 50%;
   display: flex;

@@ -53,8 +53,20 @@ li {
   justify-content: center;
 }
 
-/* header: 80 + footer : 80 */
+/* header: 60 + footer : 80 */
 
 section {
   min-height: calc(100vh - 160px);
+}
+
+.loadingBox {
+  width: 100%;
+  font-size: 30px;
+  text-align: center;
+  padding-top: 40px;
+}
+
+.loadingRound {
+  height: 50px;
+  width: 50px;
 }

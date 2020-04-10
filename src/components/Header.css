@@ -1,12 +1,12 @@
 /* HEADER */
 
 header {
-  width: 100vw;
+  width: 100%;
 }
 .menu {
   display: flex;
   justify-content: space-between;
-  line-height: 80px;
+  line-height: 60px;
 }
 
 .menu ul {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Content from "../components/Content";
 import Search from "../components/Search";
+import LoadingGif from "../components/LoadingGif";
 import axios from "axios";
 import "../App.css";
 
@@ -20,7 +21,7 @@ const Offers = () => {
     priceMax: 0,
     sort: "price-asc",
     skip: (numPage - 1) * offersByPage,
-    limit: offersByPage
+    limit: offersByPage,
   });
 
   const getUrl = () => {
@@ -63,7 +64,7 @@ const Offers = () => {
     setIsLoading(false);
   };
 
-  const updatePage = num => {
+  const updatePage = (num) => {
     setNumPage(num);
     const newParam = { ...paramApi };
     newParam.skip = (num - 1) * offersByPage;
@@ -99,7 +100,7 @@ const Offers = () => {
         fetchData={fetchData}
       ></Search>
       {isLoading ? (
-        <p> Chargement en cours</p>
+        <LoadingGif title="Chargement en cours" />
       ) : (
         <Content
           offers={offers}

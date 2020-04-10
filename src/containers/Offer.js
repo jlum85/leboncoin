@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import "../App.css";
 import "./Offer.css";
 import axios from "axios";
+import LoadingGif from "../components/LoadingGif";
 
 // back local : "http://localhost:4000/offer/"
 const API_BACK = "https://jl-back-leboncoin.herokuapp.com/offer/";
@@ -35,7 +36,7 @@ const Offer = () => {
     <section className="offer">
       <div className="container">
         {isLoading ? (
-          <p>Chargement en cours</p>
+          <LoadingGif title="Chargement en cours" />
         ) : (
           <>
             <article>
